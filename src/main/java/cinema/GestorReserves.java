@@ -10,8 +10,17 @@ private static final int MIDA_GRUP_GRAN = 6;
 private ArrayList<int[]> reservesRegistrades = new ArrayList<>();
 public boolean reservar(TipusReserva tipus, int[] seients, double preuPerSeient) {
 
+   if (seients == null || seients.length == 0) {
+        return false;
+    }
+
 double total = calcularTotal(tipus, seients.length, preuPerSeient);
 
+ registrarReserva(seients);
+
+    mostrarResum(tipus, seients.length, total);
+
+    return true;
 }
 private double calcularTotal(TipusReserva tipus, int numSeients, double preuBase) {
 
@@ -30,4 +39,12 @@ private double calcularTotal(TipusReserva tipus, int numSeients, double preuBase
     }
 
     return total;
+}
+private void registrarReserva(int[] seients) {
+    reservesRegistrades.add(seients);
+}
+private void mostrarResum(TipusReserva tipus, int numSeients, double total) {
+    System.out.println("Tipus: " + tipus);
+    System.out.println("Seients: " + numSeients);
+    System.out.println("Total: " + total);
 }
