@@ -51,3 +51,6 @@ private void mostrarResum(TipusReserva tipus, int numSeients, double total) {
     System.out.println("Seients: " + numSeients);
     System.out.println("Total: " + total);
 }
+}
+
+
