@@ -13,6 +13,9 @@ public boolean reservar(TipusReserva tipus, int[] seients, double preuPerSeient)
    if (seients == null || seients.length == 0) {
         return false;
     }
+if (preuPerSeient <= 0) {
+    return false;
+}
 
 double total = calcularTotal(tipus, seients.length, preuPerSeient);
 
