@@ -8,28 +8,26 @@ private static final double DESCOMPTE_VIP = 0.15;
 private static final int MIDA_GRUP_GRAN = 6;
 
 private ArrayList<int[]> reservesRegistrades = new ArrayList<>();
-public boolean reservar(String tipus, int[] seients, double preuPerSeient) {
-if (tipus != null) {
-if (seients != null && seients.length > 0) {
-double tot = preuPerSeient * seients.length;
-if (tipus.equals("pe")) {
-tot = tot * 0.85;
-if (seients.length >= 8) {
-tot = tot * 0.95;
+public boolean reservar(TipusReserva tipus, int[] seients, double preuPerSeient) {
+
+double total = calcularTotal(tipus, seients.length, preuPerSeient);
+
 }
-}
-if (tipus.equals("vip")) {
-tot = tot * 0.70;
-}
-if (tot > 0) {
-System.out.println("T: " + tipus);
-System.out.println("Nse: " + seients.length);
-System.out.println("Tot: " + tot);
-ll.add(s);
-return true;
-}
-}
-}
-return false;
-}
+private double calcularTotal(TipusReserva tipus, int numSeients, double preuBase) {
+
+    double total = preuBase * numSeients;
+
+    if (tipus == TipusReserva.PREESTRENA) {
+        total *= (1 - DESCOMPTE_PREESTRENA);
+    }
+
+    if (tipus == TipusReserva.VIP) {
+        total *= (1 - DESCOMPTE_VIP);
+    }
+
+    if (numSeients >= MIDA_GRUP_GRAN) {
+        total *= (1 - BONUS_GRUP_GRAN);
+    }
+
+    return total;
 }
